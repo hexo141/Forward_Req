@@ -50,10 +50,6 @@ python main.py \
   --name rule_name
 ```
 
-#### Run Without Web Interface
-```bash
-python main.py --password YOUR_ADMIN_PASSWORD --no-web
-```
 
 ### 4. Web Interface Features
 - **Login Page**: Access via browser with admin password
@@ -73,7 +69,6 @@ python main.py --password YOUR_ADMIN_PASSWORD --no-web
 | `--protocol` | Protocol: tcp, udp, or both | tcp |
 | `--web-port` | Web management interface port | 8080 |
 | `--name` | Forwarding rule name | default |
-| `--no-web` | Disable web interface | False |
 
 ## Configuration File
 
@@ -122,6 +117,5 @@ Starts web interface on port 8080 for managing rules through browser
 1. **Port Conflicts**: Ensure local ports aren't already in use
 2. **Firewall**: Allow traffic on specified local ports
 3. **Permissions**: Admin/root may be needed for ports <1024
-4. **Web Interface**: Check if `--no-web` flag was accidentally set
 
 This tool provides both command-line and web-based management for flexible TCP/UDP port forwarding operations.
