@@ -624,7 +624,6 @@ def main():
     parser.add_argument("--web-port", type=int, default=8080, help="Web management port")
     parser.add_argument("--password", required=True, help="Admin password")
     parser.add_argument("--name", default="default", help="Forwarding rule name")
-    parser.add_argument("--no-web", action="store_true", help="Do not start web interface")
     
     args = parser.parse_args()
     
@@ -649,20 +648,9 @@ def main():
         manager.start_forwarder(args.name)
     
     logger.info(f"Password: {args.password}")
-    
-    if not args.no_web:
-        logger.info(f"Web Management: http://localhost:{args.web_port}")
-        uvicorn.run(app, host="0.0.0.0", port=args.web_port)
-    else:
-        # Run forwarding only, no web interface
-        logger.info("Web interface disabled, running forwarding service only")
-        try:
-            while True:
-                time.sleep(1)
-        except KeyboardInterrupt:
-            logger.info("Interrupt received, stopping all forwardings")
-            for name in list(manager.forwarders.keys()):
-                manager.stop_forwarder(name)
+    logger.info(f"Web Management: http://localhost:{args.web_port}")
+    uvicorn.run(app, host="0.0.0.0", port=args.web_port)
 
 if __name__ == "__main__":
     main()
+
