@@ -649,9 +649,9 @@ def main():
         manager.start_forwarder(args.name)
     
     logger.info(f"Password: {args.password}")
-    logger.info(f"Web Management: http://localhost:{args.web_port}")
     
     if not args.no_web:
+        logger.info(f"Web Management: http://localhost:{args.web_port}")
         uvicorn.run(app, host="0.0.0.0", port=args.web_port)
     else:
         # Run forwarding only, no web interface
